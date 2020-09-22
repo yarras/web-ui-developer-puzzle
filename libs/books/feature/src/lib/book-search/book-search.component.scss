@@ -58,6 +58,10 @@ form {
       bottom: 0;
       right: 0;
     }
+    button:hover:enabled{
+      background: darkslategray;
+      color: whitesmoke;
+    }
   }
 }
 
