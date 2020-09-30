@@ -5,6 +5,7 @@ import {
   clearSearch,
   getAllBooks,
   ReadingListBook,
+  removeFromReadingList,
   searchBooks
 } from '@tmo/books/data-access';
 import { FormBuilder } from '@angular/forms';
@@ -16,7 +17,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./book-search.component.scss']
 })
 export class BookSearchComponent {
-
   books$: Observable<ReadingListBook[]> = this.store.select(getAllBooks);
   searchForm = this.fb.group({
     term: ''
@@ -32,7 +32,7 @@ export class BookSearchComponent {
   }
 
   addBookToReadingList(book: Book) {
-    this.store.dispatch(addToReadingList({ book }));
+    this.store.dispatch(addToReadingList({ book, showSnackBar: true }));
   }
 
   searchExample() {
@@ -47,4 +47,5 @@ export class BookSearchComponent {
       this.store.dispatch(clearSearch());
     }
   }
+
 }
