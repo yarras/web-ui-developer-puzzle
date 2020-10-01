@@ -10,13 +10,14 @@ import {
 import { FormBuilder } from '@angular/forms';
 import { Book } from '@tmo/shared/models';
 import { Observable } from 'rxjs';
+
 @Component({
   selector: 'tmo-book-search',
   templateUrl: './book-search.component.html',
   styleUrls: ['./book-search.component.scss']
 })
-export class BookSearchComponent {
 
+export class BookSearchComponent {
   books$: Observable<ReadingListBook[]> = this.store.select(getAllBooks);
   searchForm = this.fb.group({
     term: ''

@@ -16,7 +16,7 @@
 <ng-container *ngIf="searchTerm; else empty">
   <div class="book-grid">
     <div class="book" data-testing="book-item" *ngFor="let b of books$ | async">
-      <div class="book--title">
+      <div class="book--title" data-testing="book-title">
         {{ b.title }}
       </div>
       <div class="book--content">
@@ -32,6 +32,8 @@
           <p [innerHTML]="b.description"></p>
           <div>
             <button
+              *ngIf="!b.markedFinished else finishedButton"
+              data-testing="mark-to-read"
               mat-flat-button
               color="primary"
               (click)="addBookToReadingList(b)"
@@ -39,6 +41,15 @@
             >
               Want to Read
             </button>
+            <ng-template #finishedButton>
+              <div data-testing="finished-button">
+                <button
+                  mat-flat-button
+                  color="accent">
+                  Finished
+                </button>
+              </div>
+            </ng-template>
           </div>
         </div>
       </div>
